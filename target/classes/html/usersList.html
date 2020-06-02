@@ -8,6 +8,13 @@
 </head>
 <body>
 <h1>Users List</h1>
+<p th:text="${users}">something</p>
+<table border="1">
 
+    <tr th:each ="user : ${users}">
+        <td th:utext="${user.Name}">...</td>
+        <td th:utext="${user.User_id}">...</td>
+    </tr>
+</table>
 </body>
 </html>

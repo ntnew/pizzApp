@@ -22,6 +22,7 @@
 
 
   <properties>
+    <spring.version>5.2.6.RELEASE</spring.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
@@ -56,22 +57,22 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.thymeleaf</groupId>
@@ -81,7 +82,21 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.3.2.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.3.2.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>

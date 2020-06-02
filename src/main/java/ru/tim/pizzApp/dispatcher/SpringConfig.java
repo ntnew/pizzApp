@@ -22,7 +22,7 @@ import ru.tim.pizzApp.service.UserServiceImp;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan("ru.tim.pizzApp")
+@ComponentScan(basePackages = {"ru.tim.pizzApp.service","ru.tim.pizzApp.dao"})
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
@@ -66,21 +66,14 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public DataSource getDataSourse() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/internet_auction?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/pizzapp?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Moscow");
         dataSource.setUsername("root");
         dataSource.setPassword("NTNew021194158");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return dataSource;
     }
 
-    @Bean
-    public UserDao getUserDao(){
-        return new UserDaoImp(getJdbcTemplate());
-    }
 
-    @Bean
-    @Primary
-    public UserService getUserService(){
-        return new UserServiceImp();
-    }
+
+
 }

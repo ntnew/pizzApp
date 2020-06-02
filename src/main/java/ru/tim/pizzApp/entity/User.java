@@ -5,9 +5,10 @@ public class User {
     private String name;
     private String email;
     private int phone;
-    private int address;
+    private String address;
 
-    public User(int user_id, String name, String email, int phone, int address) {
+
+    public User(int user_id, String name, String email, int phone, String address) {
         this.user_id = user_id;
         this.name = name;
         this.email = email;
@@ -51,11 +52,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }
