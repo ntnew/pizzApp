@@ -10,6 +10,10 @@ public interface UserDao {
 
     Object getById(int id);
 
+    User getByUsername(String username);
+
+    String getRoleByLogin(String username);
+
     void delete(int id);
 
     void update(User user);

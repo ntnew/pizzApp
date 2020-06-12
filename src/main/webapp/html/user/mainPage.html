@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ПиццАпп</title>
+</head>
+<body>
+
+<h2>Доставка ПиццАпп</h2>
+<p>Заказы по телефону 225522</p>
+<a href="/logout">Выйти</a><br>
+<a href="/user/pizza">Пицца</a>
+<a href="/user/snacks">Закуски</a>
+<a href="/user/drinks">Напитки</a>
+<table border="1">
+    <tr th:each ="food : ${food}">
+        <td th:utext="${food.food_id}">...</td>
+        <td th:utext="${food.name}">...</td>
+        <td th:utext="${food.description}">...</td>
+        <td th:utext="${food.price}">...</td>
+        <td th:utext="${food.weight}">...</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,13 +1,17 @@
 package ru.tim.pizzApp.dispatcher;
 
+import jdk.nashorn.internal.runtime.Property;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,9 +24,14 @@ import ru.tim.pizzApp.service.UserService;
 import ru.tim.pizzApp.service.UserServiceImp;
 
 import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"ru.tim.pizzApp.service","ru.tim.pizzApp.dao"})
+@EntityScan("ru.tim.pizzApp.entity")
+@ComponentScan(basePackages = {"ru.tim.pizzApp.service","ru.tim.pizzApp.dao","ru.tim.pizzApp.validator"})
+@PropertySource("classpath:database.properties")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
@@ -63,15 +72,24 @@ public class SpringConfig implements WebMvcConfigurer {
         return new JdbcTemplate(getDataSourse());
     }
 
+    @Value("${jdbc.driverClassName}")
+    private String driverClassName;
+    @Value("${jdbc.url}")
+    private String url;
+    @Value("${jdbc.username}")
+    private String username;
+    @Value("${jdbc.password}")
+    private String password;
     @Bean
     public DataSource getDataSourse() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/pizzapp?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Moscow");
-        dataSource.setUsername("root");
-        dataSource.setPassword("NTNew021194158");
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(url); //"jdbc:mysql://localhost:3306/pizzapp?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Moscow"
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setDriverClassName(driverClassName);
         return dataSource;
     }
+
 
 
 

@@ -1,6 +1,7 @@
 package ru.tim.pizzApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.tim.pizzApp.dao.UserDao;
 import ru.tim.pizzApp.entity.User;
@@ -12,6 +13,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     public UserDao userDao;
 
+
     @Override
     public void save(User user) {
         userDao.save(user);
@@ -20,6 +22,11 @@ public class UserServiceImp implements UserService {
     @Override
     public User getById(int id) {
         return (User) userDao.getById(id);
+    }
+
+    @Override
+    public User getByUserName(String username) {
+        return userDao.getByUsername(username);
     }
 
     @Override

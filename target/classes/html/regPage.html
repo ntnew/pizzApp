@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
 </head>
 <body>
 РЕГАЙСЯ БЫСТРА
-<form name="user" action="/users" method="post">
-    <input title="Name" type="text" name="name" placeholder="Имя"> <br>
-    <input title="Email" type="text" name="email" placeholder="имейл"><br>
-    <input title="Phone" type="number" name="phone" placeholder="телефон"><br>
-    <input title="Address" type="text" name="address" placeholder="адрес"><br>
-    <input type="submit" value="OK">
-</form>
-
+<div>
+    <form name="user" action="/reg" th:action="@{/reg}" th:object="${user}" method="post">
+        <table>
+            <tr>
+                <td>Логин:</td>
+                <td><input type="text" name="name" th:field="*{name}" /></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Пароль:</td>
+                <td><input  title="Password" name="password" type="password" th:field="*{password}" /></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input title="Email" type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Телефон:</td>
+                <td><input title="Phone" type="number" name="phone"></td>
+            </tr>
+            <tr>
+                <td>Адрес:</td>
+                <td><input title="Address" type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

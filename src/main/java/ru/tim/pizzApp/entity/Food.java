@@ -4,22 +4,22 @@ public class Food {
     private int food_id;
     private String name;
     private String description;
-    private int price;
+    private double price;
     private int weight;
-    private int type;
+    private String type;
 
     public Food() {
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Food(int food_id, String name, String description, int price, int weight, int type) {
+    public Food(int food_id, String name, String description, double price, int weight, String type) {
         this.food_id = food_id;
         this.name = name;
         this.description = description;
@@ -52,11 +52,11 @@ public class Food {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
