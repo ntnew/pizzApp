@@ -40,7 +40,7 @@ public class FirstController  {
 
     @GetMapping("/")
     public String mainPage() {
-        User user = userService.getByUserName(getCurrentUsername());
+        User user = userService.getByLogin(getCurrentUsername());
         if(user.getRole().equals("ROLE_USER")){
             return "redirect:user/";
         }

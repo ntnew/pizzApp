@@ -2,22 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link href="../static/first.css"  th:href="@{static/first.css}"rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form  name="user" th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<div class="inpForm">
+    <form   name="user" th:action="@{/login}" method="post">
+        <div ><p>Логин:</p></div>
+        <div class="field"><input class="input" type="text" name="username"/></div>
+        <div><p>Пароль:</p></div>
+        <div class="field"><input class="input" type="password" name="password"/> </div>
 
-<a href="/reg">Регистрация</a>
+        <div id="error" th:if="${param.error}"><p>Неправильное имя пользователя или пароль.</p></div>
+        <div id="success" th:if="${param.logout}"><p>Вы вышли из системы.</p></div>
+
+        <input id ="button" type="submit" value="Войти"/>
+    </form>
+
+    <a class="link" href="/reg"><p>Регистрация</p></a>
+</div>
 </body>
 </html>

@@ -25,5 +25,15 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "admin/usersList";
     }
+    @GetMapping("/admin/foodList")
+    public String getAllFood(Model model){
+        model.addAttribute("food", foodService.findAll());
+        return "admin/foodList";
+    }
+    @GetMapping("/admin/ordersList")
+    public String getAllOrders(Model model){
+        //model.addAttribute("food", foodService.findAll());
+        return "admin/ordersList";
+    }
 
 }

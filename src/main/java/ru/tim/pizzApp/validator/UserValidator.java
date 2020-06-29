@@ -20,15 +20,15 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         User user = (User) obj;
-        if (user.getName().length()<4 || user.getName().length()>12) {
-            errors.rejectValue("name","", "Логин должен быть более 4-х и менее 12-ти символов");
+        if (user.getLogin().length()<4 || user.getLogin().length()>12) {
+            errors.rejectValue("login","", "Логин должен быть более 4-х и менее 12-ти символов");
         }
         if (user.getPassword().length()<4 || user.getPassword().length()>16) {
             errors.rejectValue("password","", "Пароль должен быть более 4-х и менее 16-ти символов");
         }
-        if(!user.getName().equals("")){
-            if (userService.getByUserName(user.getName())!=null) {
-                errors.rejectValue("name","", "Такой логин уже используется");
+        if(!user.getLogin().equals("")){
+            if (userService.getByLogin(user.getLogin())!=null) {
+                errors.rejectValue("login","", "Такой логин уже используется");
             }
         }
 

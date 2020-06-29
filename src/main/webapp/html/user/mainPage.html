@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/FoodPopup.js}" src="../../static/js/FoodPopup.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
     <title>ПиццАпп</title>
 </head>
 <body>
+<div class="header">
+    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+    <h2>Доставка ПиццАпп</h2>
 
-<h2>Доставка ПиццАпп</h2>
-<p>Заказы по телефону 225522</p>
-<a href="/logout">Выйти</a><br>
-<a href="/user/pizza">Пицца</a>
-<a href="/user/snacks">Закуски</a>
-<a href="/user/drinks">Напитки</a>
-<table border="1">
-    <tr th:each ="food : ${food}">
-        <td th:utext="${food.food_id}">...</td>
-        <td th:utext="${food.name}">...</td>
-        <td th:utext="${food.description}">...</td>
-        <td th:utext="${food.price}">...</td>
-        <td th:utext="${food.weight}">...</td>
-    </tr>
-</table>
+    <h3>Заказы по телефону ...</h3>
+    <p id="headerRef">
+        <a href="/user/pizza">Пицца</a>
+        <a href="/user/snacks">Закуски</a>
+        <a href="/user/drinks">Напитки</a>
+        <a href="/user/drinks">Личный кабинет</a>
+        <a href="/logout">Выйти</a>
+    </p>
+
+</div>
+
+<div class="content">
+    <ol>
+        <li class="foodTable" th:each ="food : ${food}">
+            <table>
+                <tr>
+                    <td><img th:src="@{../../static/images/pizzapp-min-300x300.jpg}"  height="300" width="300"></td>
+                </tr>
+                <tr>
+                    <td id="name" th:utext="${food.name}">...</td>
+                </tr>
+                <tr>
+                    <td id="description"><p>Состав:<span th:utext="${food.description}">Состав</span></p></td>
+                </tr>
+                <tr>
+                    <td ><p>Вес:<span th:utext="${food.weight}">Состав</span> гр.</p></td>
+                </tr>
+                <tr>
+                    <td id="price"><p>Цена:<span th:utext="${food.price}">Состав</span> руб.</p></td>
+                </tr>
+                <tr>
+                    <td id="order"><button id="orderButton" onClick="javascript:PopUpShow()" th:attr="onClick='javascript:PopUpShow(&quot' + ${food.food_id} + '&quot)'">В корзину</button></td>
+                </tr>
+            </table>
+        </li>
+    </ol>
+</div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+
+        <a href="javascript:PopUpHide()">Hide popup</a>
+    </div>
+</div>
+
 </body>
 </html>

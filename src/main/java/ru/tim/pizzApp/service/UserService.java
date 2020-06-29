@@ -3,6 +3,7 @@ package ru.tim.pizzApp.service;
 import ru.tim.pizzApp.entity.User;
 
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 public interface UserService {
@@ -17,4 +18,6 @@ public interface UserService {
     void update(User user);
 
     List<User> findAll();
+
+    User getByLogin(String login);
 }

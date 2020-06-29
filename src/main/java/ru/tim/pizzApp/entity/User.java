@@ -1,14 +1,11 @@
 package ru.tim.pizzApp.entity;
 
-import javax.annotation.sql.DataSourceDefinition;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.persistence.Entity;
 
 @Entity
 public class User {
     private int user_id;
+    private String login;
     private String name;
     private String email;
     private String phone;
@@ -17,10 +14,17 @@ public class User {
     private String  role;
 
 
+    public String getLogin() {
+        return login;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-    public User(int user_id, String name, String email, String phone, String address, String password, String role) {
+    public User(int user_id, String login, String name, String email, String phone, String address, String password, String role) {
         this.user_id = user_id;
+        this.login = login;
         this.name = name;
         this.email = email;
         this.phone = phone;

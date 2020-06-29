@@ -37,4 +37,10 @@ public class FoodDaoImp implements FoodDao {
         String sql = "SELECT * FROM food WHERE type = 'snack'";
         return jdbcTemplate.query(sql, new FoodMapper());
     }
+
+    @Override
+    public Food findById(int food_id) {
+        String sql = "SELECT * FROM food WHERE food_id=:?";
+        return (Food) jdbcTemplate.queryForObject(sql, new FoodMapper(), food_id);
+    }
 }

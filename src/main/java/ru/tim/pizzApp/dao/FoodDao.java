@@ -14,5 +14,7 @@ public interface FoodDao {
 
     List<Food> findSnacks();
 
+    Food findById(int food_id);
+
 
 }

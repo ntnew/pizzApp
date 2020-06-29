@@ -20,8 +20,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void save(User user) {
-        String sql ="INSERT INTO users (user_id, name, role, email, phone, address, password) VALUES (DEFAULT,?, DEFAULT, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPhone(), user.getAddress(), user.getPassword());
+        String sql ="INSERT INTO users (user_id, login, password, name, role, email, phone, address) VALUES (DEFAULT,?, ?, ?, DEFAULT, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.getLogin(), user.getPassword(), user.getName(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
     @Override
@@ -64,5 +64,17 @@ public class UserDaoImp implements UserDao {
     public List<User> findAll() {
         String sql = "SELECT * FROM users";
         return jdbcTemplate.query(sql, new UserMapper());
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        String sql = "SELECT * FROM users WHERE login=?";
+        User user;
+        try {
+            user = (User) jdbcTemplate.queryForObject(sql, new UserMapper(), login);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+        return user;
     }
 }
