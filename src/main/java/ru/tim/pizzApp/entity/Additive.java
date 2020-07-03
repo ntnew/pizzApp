@@ -1,15 +1,15 @@
 package ru.tim.pizzApp.entity;
 
-public class Additives {
+public class Additive {
     private int id;
-    private int name;
+    private String name;
     private int weight;
     private double price;
 
-    public Additives() {
+    public Additive() {
     }
 
-    public Additives(int id, int name, int weight, double price) {
+    public Additive(int id, String name, int weight, double price) {
         this.id = id;
         this.name = name;
         this.weight = weight;
@@ -24,11 +24,11 @@ public class Additives {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

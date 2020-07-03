@@ -1,24 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/FoodPopup.js}" src="../../static/js/FoodPopup.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <title>ПиццАпп</title>
 </head>
 <body>
+<div class="header">
+    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+    <h2>Доставка ПиццАпп</h2>
 
-<h2>Доставка ПиццАпп</h2>
-<p>Заказы по телефону 225522</p>
-<a href="/user/pizza">Пицца</a>
-<a href="/user/snacks">Закуски</a>
-<a href="/user/drinks">Напитки</a>
-<table border="1">
-    <tr th:each ="food : ${food}">
-        <td th:utext="${food.food_id}">...</td>
-        <td th:utext="${food.name}">...</td>
-        <td th:utext="${food.description}">...</td>
-        <td th:utext="${food.price}">...</td>
-        <td th:utext="${food.weight}">...</td>
-    </tr>
-</table>
+    <h3>Заказы по телефону ...</h3>
+    <p id="headerRef">
+        <a href="/user/pizza">Пицца</a>
+        <a href="/user/snacks">Закуски</a>
+        <a href="/user/drinks">Напитки</a>
+        <a href="/user/bucket">Корзина</a>
+        <a href="/user/drinks">Личный кабинет</a>
+        <a href="/logout">Выйти</a>
+    </p>
+
+</div>
+
+<div class="content">
+    <ol>
+        <li class="foodTable" th:each ="food : ${food}">
+            <table>
+                <tr>
+                    <td><img th:src="'../../static/images/' + ${food.image}"  height="300" width="300"></td>
+                </tr>
+                <tr>
+                    <td id="name" th:utext="${food.name}">...</td>
+                </tr>
+                <tr>
+                    <td id="description"><p>Состав:<span th:utext="${food.description}">Состав</span></p></td>
+                </tr>
+                <tr>
+                    <td ><p>Вес:<span th:utext="${food.weight}">Состав</span> гр.</p></td>
+                </tr>
+                <tr>
+                    <td id="price"><p>Цена:<span th:utext="${food.price}">Состав</span> руб.</p></td>
+                </tr>
+                <tr>
+                    <td id="order">
+                        <button class="orderButton" onClick="javascript:PopUpShow()" th:attr="onClick=
+                    'javascript:PopUpShow(&quot' + ${food.name} + '&quot ,&quot' + ${food.description} + '&quot,
+                    &quot' + ${food.price} + '&quot, &quot' + ${food.image} + '&quot)'" th:if="${food.type}=='pizza'">В корзину
+                        </button>
+                        <form  th:unless="${food.type}=='pizza'" th:action="@{/user/addToBucket}" method="post" th:object="${bucket}">
+                            <input type="hidden" name="order" th:value="${food.name}">
+                            <button class="orderButton" type="submit" onClick="javascript:addToBucket()">Заказать</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </ol>
+</div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <p id="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+        <img id = 'image' src ='' />
+        <p id="preOrderName"></p>
+        <p id="preOrderDescription"></p>
+        <p id="priceP"> Цена: <span id="preOrderPrice"></span> руб.</p>
+
+        <form id="additiveForm" th:action="@{/user/addToBucket}" method="post" th:object="${bucket}">
+            <input type="hidden" name="order" id="orderName">
+            <input type="hidden" name="price" id="orderPrice">
+            <div th:each ="additive : ${additive}">
+                <input class="additiveInput" type="checkbox" name="additives" th:value="${additive.name}"><span th:text="${additive.name}"></span>  Цена
+                <span th:text="${additive.price}"></span>
+            </div>
+            <button class="orderButton" type="submit" onClick="javascript:addToBucket()">Заказать</button>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

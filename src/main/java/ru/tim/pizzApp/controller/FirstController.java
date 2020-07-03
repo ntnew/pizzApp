@@ -13,6 +13,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import ru.tim.pizzApp.additional.GetUserName;
 import ru.tim.pizzApp.entity.User;
 import ru.tim.pizzApp.service.UserService;
 import ru.tim.pizzApp.validator.UserValidator;
@@ -33,14 +34,11 @@ public class FirstController  {
     @Autowired
     private UserValidator userValidator;
 
-    public String getCurrentUsername() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return auth.getName();
-    }
+
 
     @GetMapping("/")
     public String mainPage() {
-        User user = userService.getByLogin(getCurrentUsername());
+        User user = userService.getByLogin(GetUserName.getCurrentUsername());
         if(user.getRole().equals("ROLE_USER")){
             return "redirect:user/";
         }

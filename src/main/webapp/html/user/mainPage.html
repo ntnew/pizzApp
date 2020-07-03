@@ -18,6 +18,7 @@
         <a href="/user/pizza">Пицца</a>
         <a href="/user/snacks">Закуски</a>
         <a href="/user/drinks">Напитки</a>
+        <a href="/user/bucket">Корзина</a>
         <a href="/user/drinks">Личный кабинет</a>
         <a href="/logout">Выйти</a>
     </p>
@@ -29,7 +30,7 @@
         <li class="foodTable" th:each ="food : ${food}">
             <table>
                 <tr>
-                    <td><img th:src="@{../../static/images/pizzapp-min-300x300.jpg}"  height="300" width="300"></td>
+                    <td><img th:src="'../../static/images/' + ${food.image}"  height="300" width="300"></td>
                 </tr>
                 <tr>
                     <td id="name" th:utext="${food.name}">...</td>
@@ -44,7 +45,16 @@
                     <td id="price"><p>Цена:<span th:utext="${food.price}">Состав</span> руб.</p></td>
                 </tr>
                 <tr>
-                    <td id="order"><button id="orderButton" onClick="javascript:PopUpShow()" th:attr="onClick='javascript:PopUpShow(&quot' + ${food.food_id} + '&quot)'">В корзину</button></td>
+                    <td id="order">
+                        <button class="orderButton" onClick="javascript:PopUpShow()" th:attr="onClick=
+                    'javascript:PopUpShow(&quot' + ${food.name} + '&quot ,&quot' + ${food.description} + '&quot,
+                    &quot' + ${food.price} + '&quot, &quot' + ${food.image} + '&quot)'" th:if="${food.type}=='pizza'">В корзину
+                        </button>
+                        <form  th:unless="${food.type}=='pizza'" th:action="@{/user/addToBucket}" method="post" th:object="${bucket}">
+                            <input type="hidden" name="order" th:value="${food.name}">
+                            <button class="orderButton" type="submit" onClick="javascript:addToBucket()">Заказать</button>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </li>
@@ -52,8 +62,22 @@
 </div>
 <div class="b-popup" id="popup1">
     <div class="b-popup-content">
+        <p id="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+        <img id = 'image' src ='' />
+        <p id="preOrderName"></p>
+        <p id="preOrderDescription"></p>
+        <p id="priceP"> Цена: <span id="preOrderPrice"></span> руб.</p>
 
-        <a href="javascript:PopUpHide()">Hide popup</a>
+        <form id="additiveForm" th:action="@{/user/addToBucket}" method="post" th:object="${bucket}">
+            <input type="hidden" name="order" id="orderName">
+            <input type="hidden" name="price" id="orderPrice">
+            <div th:each ="additive : ${additive}">
+                <input class="additiveInput" type="checkbox" name="additives" th:value="${additive.name}"><span th:text="${additive.name}"></span>  Цена
+                <span th:text="${additive.price}"></span>
+            </div>
+            <button class="orderButton" type="submit" onClick="javascript:addToBucket()">Заказать</button>
+        </form>
+
     </div>
 </div>
 

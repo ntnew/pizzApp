@@ -7,6 +7,15 @@ public class Food {
     private double price;
     private int weight;
     private String type;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Food() {
     }
@@ -19,13 +28,14 @@ public class Food {
         this.type = type;
     }
 
-    public Food(int food_id, String name, String description, double price, int weight, String type) {
+    public Food(int food_id, String name, String description, double price, int weight, String type, String image) {
         this.food_id = food_id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.weight = weight;
         this.type = type;
+        this.image = image;
     }
 
     public int getFood_id() {

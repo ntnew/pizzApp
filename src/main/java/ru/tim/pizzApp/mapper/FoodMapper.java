@@ -17,6 +17,7 @@ public class FoodMapper implements RowMapper {
         food.setPrice(resultSet.getDouble("price"));
         food.setWeight(resultSet.getInt("weight"));
         food.setType(resultSet.getString("type"));
+        food.setImage(resultSet.getString("image"));
         return food;
     }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/FoodPopup.js}" src="../../static/js/FoodPopup.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <title>Регистрация заказа</title>
+</head>
+<body>
+
+<div class="header">
+    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+    <h2>Доставка ПиццАпп</h2>
+    <h3>Заказы по телефону ...</h3>
+    <p id="headerRef">
+        <a href="/user/pizza">Пицца</a>
+        <a href="/user/snacks">Закуски</a>
+        <a href="/user/drinks">Напитки</a>
+        <a href="/user/bucket">Корзина</a>
+        <a href="/user/drinks">Личный кабинет</a>
+        <a href="/logout">Выйти</a>
+    </p>
+</div>
+
+<div class="content">
+    <form th:action="@{/user/regOrder}" th:object="${order}" method="post">
+        <input type="hidden" name="order" th:value="${finalOrder}">
+        <input type="hidden" name="price" th:value="${fullPrice}">
+        <table class="bucketTable">
+            <tr>
+                <td>ФИО:</td>
+                <td><input class="orderInput" type="text" name="userName"></td>
+            </tr>
+            <tr>
+                <td>Адрес Доставки:</td>
+                <td><input class="orderInput" name="deliveryAddress" type="text"/></td>
+            </tr>
+            <tr>
+                <td>Телефон:</td>
+                <td><input class="orderInput"  type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <td>Примечание:</td>
+                <td><input class="orderInput" type="text" name="notice"></td>
+            </tr>
+            <tr>
+                <td>К оплате: <span th:text="${fullPrice}"></span></td>
+                <td><button class="orderButton2" type="submit" onclick="javascript:orderAdded()">Поддтвердить</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

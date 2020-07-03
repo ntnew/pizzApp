@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}"
+            src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/FoodPopup.js}" src="../../static/js/FoodPopup.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <title>Корзина</title>
+</head>
+<body>
+    <div class="header">
+        <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+        <h2>Доставка ПиццАпп</h2>
+
+        <h3>Заказы по телефону ...</h3>
+        <p id="headerRef">
+            <a href="/user/pizza">Пицца</a>
+            <a href="/user/snacks">Закуски</a>
+            <a href="/user/drinks">Напитки</a>
+            <a href="/user/bucket">Корзина</a>
+            <a href="/user/drinks">Личный кабинет</a>
+            <a href="/logout">Выйти</a>
+        </p>
+    </div>
+
+    <div class="content">
+        <table class="bucketTable" >
+            <thead>
+                <tr>
+                    <td>Заказ</td>
+                    <td>Добавки</td>
+                    <td id="priceTD">Стоимость</td>
+                    <td id="deleteTD"></td>
+                </tr>
+            </thead>
+
+            <tbody th:each="bucket : ${bucket}">
+                <tr>
+                    <td th:utext="${bucket.order}">...</td>
+                    <td th:utext="${bucket.additives}">...</td>
+                    <td th:utext="${bucket.price}">...</td>
+                    <td>
+                        <form th:action="@{/user/deleteBucketPosById}" method="post" th:object="${bucket}">
+                            <input type="hidden" name="id" th:value="${bucket.id}">
+                            <button type="submit">Убрать</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>ИТОГО:</td>
+                    <td th:utext="${fullPrice}"></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <form action="/user/orderReg " method="GET">
+            <input class="orderButton2" type="submit" value="Оформить заказ" width="300px"/>
+        </form>
+
+    </div>
+</body>
+</html>
