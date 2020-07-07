@@ -1,0 +1,80 @@
+body {
+  background-color: #fafafa;
+  font-family:Verdana;
+
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+.commands{
+width: 150px;
+margin: 3px 5px;
+}
+.foot{
+ float: left;
+ margin: 100px 0;
+
+}
+.mainButton{
+    ;
+    margin:30px auto;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:250px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.mainButtonLine{
+    display: inline;
+    margin:50px 50px;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:250px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.content{
+    margin: 50px auto;
+    width: 1200px;
+}
+.mainTable{
+    width:100%;
+    margin:0 auto;
+    padding:5px 10px;
+    border-collapse: collapse;
+}
+.mainTable thead tr {
+
+    padding:5px 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #00bf80;
+}
+.mainTable thead tr td {
+    border: 1px solid #01ab73;
+    padding:10px 10px;
+}
+.mainTable tbody tr td {
+    border-top: 1px solid #e8e9eb;
+    padding:10px 10px;
+}
+.mainTable tbody tr:nth-child(2n) {
+    background: #f4f4f4;
+    padding:10px 10px;
+}
+.mainTable tbody tr:hover {
+    background: #ebffe8;
+    padding:10px 10px;
+}

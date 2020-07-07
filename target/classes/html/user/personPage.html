@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/PersonEditPopup.js}" src="../../static/js/PersonEditPopup.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <title>Личный кабинет</title>
+</head>
+<body>
+<div class="header">
+    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+
+    <h2>Доставка ПиццАпп</h2>
+    <h3>Заказы по телефону ...</h3>
+    <p id="headerRef">
+        <a href="/user/pizza">Пицца</a>
+        <a href="/user/snacks">Закуски</a>
+        <a href="/user/drinks">Напитки</a>
+        <a href="/user/bucket">Корзина</a>
+        <a href="/user/personPage">Личный кабинет</a>
+        <a href="/logout">Выйти</a>
+    </p>
+</div>
+
+<div class="content">
+<table class="bucketTable">
+    <thead>
+        <tr >
+            <td th:text="${user.login}" colspan="2"></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="td1">ФИО:</td>
+            <td th:text="${user.name}"></td>
+        </tr>
+        <tr>
+            <td class="td1">Email:</td>
+            <td th:text="${user.email}"></td>
+        </tr>
+        <tr>
+            <td class="td1">Адрес:</td>
+            <td th:text="${user.address}"></td>
+        </tr>
+        <tr>
+            <td class="td1">Телефон:</td>
+            <td th:text="${user.phone}"></td>
+        </tr>
+    </tbody>
+</table>
+    <button class="orderButton2" type="button" onClick="javascript:PopUpShow()">Редактировать</button>
+    <button class="orderButton2" type="button" onClick="javascript:editPassword()">Изменить пароль</button>
+
+    <table class="bucketTable">
+        <thead>
+            <tr>
+                <td colspan="4">Заказы</td>
+            </tr>
+        </thead>
+        <tbody th:each ="order : ${order}">
+        <tr>
+            <td>Заказ № <span th:text="${order.id}"></span></td>
+            <td>К оплате <span th:text="${order.price}"></span></td>
+            <td>Заказано: <span th:text="${order.order}"></span></td>
+            <td>Статус: <span th:text="${order.status}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <p class="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+        <form th:action="@{/user/editUser}" method="post" th:object="${user}">
+            <table class="bucketTable">
+                <thead>
+                <tr >
+                    <td> Редактирование</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="td1">ФИО:</td>
+                    <td><input class="orderInput" name="name" th:value="${user.name}"></td>
+                </tr>
+                <tr>
+                    <td class="td1">Email:</td>
+                    <td><input class="orderInput" name="email" th:value="${user.email}"></td>
+                </tr>
+                <tr>
+                    <td class="td1">Адрес:</td>
+                    <td><input class="orderInput" name="address" th:value="${user.address}"></td>
+                </tr>
+                <tr>
+                    <td class="td1">Телефон:</td>
+                    <td><input class="orderInput" name="phone" th:value="${user.phone}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="orderButton2" type="submit">Подтвердить</button>
+        </form>
+    </div>
+</div>
+
+<div class="b-popup" id="popup2">
+    <div class="b-popup-content">
+        <p class="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+
+        <form id="passwordForm" name="passwordForm"   th:object="${user}">
+            <input  type="hidden" id="oldPassword1" th:value="${user.password}">
+            <p class="error" id="wrongOldPassword">Неправильно введён старый пароль</p>
+            <p class="error" id="PasswordDidntMatch">Новые пароли не совпадают</p>
+            <p class="error" id="ValidatePassword">Пароль должен быть от 4х до 16-ти символов</p>
+            <table class="bucketTable">
+                <thead>
+                    <tr >
+                        <td> Редактирование</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td> Введите старый пароль:</td>
+                        <td> <input  class="orderInput" type="password" id="oldPassword"></td>
+                    </tr>
+                    <tr >
+                        <td> Введите новый пароль:</td>
+                        <td> <input class="orderInput" type="password" name="password" id="newPassword"></td>
+                    </tr>
+                    <tr >
+                        <td> Повторите пароль:</td>
+                        <td> <input class="orderInput"  type="password" id="repeatPassword" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="orderButton" type="button" onclick="javascript:validate_form()">Подтвердить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

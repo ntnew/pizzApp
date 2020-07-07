@@ -1,0 +1,53 @@
+body {
+  background-color: #fafafa;
+  font-family:Verdana;
+}
+
+#error{
+    color: red;
+    padding: 10px auto;
+}
+#success{
+color: green;
+padding: 10px auto;
+}
+#button{
+    margin: 20px 10px 5px 130px;
+    padding:10px ;
+    border:none;
+    background-color:black;
+    color:#FDC504;
+    font-weight:bold;
+    font-size: 130%;
+    border-radius:5px;
+    width:250px;
+
+}
+
+.inpForm{
+    margin: 0 auto;
+    padding: 5px;
+    width:500px;
+    border: 2px solid #919191;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+}
+.input {
+    padding: 10px;
+    margin:5 auto;
+    border: 2px solid #919191;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    width:400px;
+    text-align:center;
+}
+
+.field{
+    margin: 0 auto;
+    padding: 5px 50px 5px 50px;
+}
+p{
+text-align:center;
+}
+
+
