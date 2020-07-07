@@ -19,7 +19,7 @@
         <a href="/user/snacks">Закуски</a>
         <a href="/user/drinks">Напитки</a>
         <a href="/user/bucket">Корзина</a>
-        <a href="/user/drinks">Личный кабинет</a>
+        <a href="/user/personPage">Личный кабинет</a>
         <a href="/logout">Выйти</a>
     </p>
 
@@ -52,6 +52,7 @@
                         </button>
                         <form  th:unless="${food.type}=='pizza'" th:action="@{/user/addToBucket}" method="post" th:object="${bucket}">
                             <input type="hidden" name="order" th:value="${food.name}">
+                            <input type="hidden" name="price" th:value="${food.price}">
                             <button class="orderButton" type="submit" onClick="javascript:addToBucket()">Заказать</button>
                         </form>
                     </td>
@@ -62,7 +63,7 @@
 </div>
 <div class="b-popup" id="popup1">
     <div class="b-popup-content">
-        <p id="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+        <p class="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
         <img id = 'image' src ='' />
         <p id="preOrderName"></p>
         <p id="preOrderDescription"></p>

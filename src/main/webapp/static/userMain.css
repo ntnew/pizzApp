@@ -156,7 +156,7 @@ p{
 #preOrderDescription{
     padding:  5px 0 5px 415px ;
 }
-#closePopup{
+.closePopup{
     padding:  5px 0 5px 800px ;
 }
 a{
@@ -213,5 +213,12 @@ label{
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
     border-radius:3px;
     width:330px;
+}
+.td1{
+width: 200px;
+}
+.error{
+color: red;
+text-align:center;
 }
 

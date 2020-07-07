@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +14,16 @@ import ru.tim.pizzApp.additional.GetUserName;
 import ru.tim.pizzApp.additional.OrderMethods;
 import ru.tim.pizzApp.entity.Bucket;
 import ru.tim.pizzApp.entity.Order;
-import ru.tim.pizzApp.service.AdditiveService;
-import ru.tim.pizzApp.service.BucketService;
-import ru.tim.pizzApp.service.FoodService;
-import ru.tim.pizzApp.service.OrderService;
+import ru.tim.pizzApp.entity.User;
+import ru.tim.pizzApp.service.*;
+
 
 @Controller
 public class UserController {
+
+
+    @Autowired
+    public UserService userService;
 
     @Autowired
     public BucketService bucketService;
@@ -59,12 +63,14 @@ public class UserController {
     @PostMapping("/user/addToBucket")
     public String addToBucket(@ModelAttribute Bucket bucket, Model model){
         bucket.setUser_login(GetUserName.getCurrentUsername());
-        String[] words = bucket.getAdditives().split(",");
-        double AdditivesPrice = 0;
-        for(String word : words){
-            AdditivesPrice = AdditivesPrice + additiveService.findPriceByName(word);
+        if (bucket.getAdditives() != null) {
+            String[] words = bucket.getAdditives().split(",");
+            double AdditivesPrice = 0;
+            for(String word : words){
+                AdditivesPrice = AdditivesPrice + additiveService.findPriceByName(word);
+            }
+            bucket.setPrice(bucket.getPrice()+AdditivesPrice);
         }
-        bucket.setPrice(bucket.getPrice()+AdditivesPrice);
         bucketService.save(bucket);
         return "redirect:/";
     }
@@ -84,6 +90,7 @@ public class UserController {
 
     @GetMapping("/user/orderReg")
     public String orderRegistration(Model model){
+        model.addAttribute("user", userService.getByLogin(GetUserName.getCurrentUsername()));
         model.addAttribute("finalOrder", OrderMethods.getOrderString(bucketService.findByLogin(GetUserName.getCurrentUsername())));
         model.addAttribute("fullPrice", OrderMethods.getFullPrice(bucketService.findByLogin(GetUserName.getCurrentUsername())));
         return "user/orderReg";
@@ -95,5 +102,25 @@ public class UserController {
         orderService.save(order);
         bucketService.deleteByLogin(GetUserName.getCurrentUsername());
         return "redirect:/" ;
+    }
+
+    @GetMapping("/user/personPage")
+    public String personPage(Model model){
+        model.addAttribute("user", userService.getByLogin(GetUserName.getCurrentUsername()));
+        model.addAttribute("order", orderService.getAllUserOrder(GetUserName.getCurrentUsername()));
+        return "user/personPage";
+    }
+    @PostMapping("/user/editUser")
+    public String editUser(@ModelAttribute("user") User user){
+        user.setLogin(GetUserName.getCurrentUsername());
+        userService.update(user);
+        return "redirect:/user/personPage";
+    }
+
+    @PostMapping("/user/editPassword")
+    public String editPassword(@ModelAttribute("user") User user){
+        user.setLogin(GetUserName.getCurrentUsername());
+        userService.updatePassword(user);
+        return "redirect:/user/personPage";
     }
 }

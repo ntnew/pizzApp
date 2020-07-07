@@ -18,7 +18,7 @@
         <a href="/user/snacks">Закуски</a>
         <a href="/user/drinks">Напитки</a>
         <a href="/user/bucket">Корзина</a>
-        <a href="/user/drinks">Личный кабинет</a>
+        <a href="/user/personPage">Личный кабинет</a>
         <a href="/logout">Выйти</a>
     </p>
 </div>
@@ -30,15 +30,15 @@
         <table class="bucketTable">
             <tr>
                 <td>ФИО:</td>
-                <td><input class="orderInput" type="text" name="userName"></td>
+                <td><input class="orderInput" type="text" name="userName" th:value="${user.name}"></td>
             </tr>
             <tr>
                 <td>Адрес Доставки:</td>
-                <td><input class="orderInput" name="deliveryAddress" type="text"/></td>
+                <td><input class="orderInput" name="deliveryAddress" type="text" th:value="${user.address}"/></td>
             </tr>
             <tr>
                 <td>Телефон:</td>
-                <td><input class="orderInput"  type="text" name="phone"></td>
+                <td><input class="orderInput"  type="text" name="phone" th:value="${user.phone}"></td>
             </tr>
             <tr>
                 <td>Примечание:</td>

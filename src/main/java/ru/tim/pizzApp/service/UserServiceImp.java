@@ -30,8 +30,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void delete(int id) {
-        userDao.delete(id);
+    public void delete(String login) {
+        userDao.delete(login);
     }
 
     @Override
@@ -47,5 +47,20 @@ public class UserServiceImp implements UserService {
     @Override
     public User getByLogin(String login) {
         return userDao.getByLogin(login);
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        userDao.updatePassword(user);
+    }
+
+    @Override
+    public void makeAdminByLogin(String login) {
+        userDao.makeAdminByLogin(login);
+    }
+
+    @Override
+    public void bustAdminByLogin(String login) {
+        userDao.bustAdminByLogin(login);
     }
 }

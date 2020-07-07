@@ -13,11 +13,17 @@ public interface UserService {
 
     User getByUserName(String username);
 
-    void delete(int id);
+    void delete(String login);
 
     void update(User user);
 
     List<User> findAll();
 
     User getByLogin(String login);
+
+    void updatePassword(User user);
+
+    void makeAdminByLogin(String login);
+
+    void bustAdminByLogin(String login);
 }

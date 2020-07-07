@@ -48,16 +48,22 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
-        String sql = "DELETE FROM users WHERE user_id=?";
-        jdbcTemplate.update(sql,id);
+    public void delete(String login) {
+        String sql = "DELETE FROM users WHERE login=?";
+        jdbcTemplate.update(sql,login);
     }
 
     @Override
     public void update(User user) {
-        String sql = "UPDATE users SET name=?, email=?, phone=?, address=? WHERE user_id=:?";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPhone(), user.getAddress(), user.getUser_id());
+        String sql = "UPDATE users SET name=?, email=?, phone=?, address=? WHERE login = ?";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPhone(), user.getAddress(), user.getLogin());
 
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        String sql = "UPDATE users SET password=? WHERE login = ?";
+        jdbcTemplate.update(sql, user.getPassword(), user.getLogin());
     }
 
     @Override
@@ -76,5 +82,17 @@ public class UserDaoImp implements UserDao {
             return null;
         }
         return user;
+    }
+
+    @Override
+    public void makeAdminByLogin(String login) {
+        String sql = "UPDATE users SET role=? WHERE login = ?";
+        jdbcTemplate.update(sql, "ROLE_ADMIN",login);
+    }
+
+    @Override
+    public void bustAdminByLogin(String login) {
+        String sql = "UPDATE users SET role=? WHERE login = ?";
+        jdbcTemplate.update(sql, "ROLE_USER",login);
     }
 }

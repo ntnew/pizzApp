@@ -14,12 +14,19 @@ public interface UserDao {
 
     String getRoleByLogin(String username);
 
-    void delete(int id);
+    void delete(String login);
 
     void update(User user);
+
+    void updatePassword(User user);
 
     List<User> findAll();
 
     User getByLogin(String login);
+
+    void makeAdminByLogin(String login);
+
+    void bustAdminByLogin(String login);
+
 
 }
