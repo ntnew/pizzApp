@@ -39,8 +39,28 @@ public class FoodDaoImp implements FoodDao {
     }
 
     @Override
-    public Food findById(int food_id) {
-        String sql = "SELECT * FROM food WHERE food_id=:?";
-        return (Food) jdbcTemplate.queryForObject(sql, new FoodMapper(), food_id);
+    public Food findById(int id) {
+        String sql = "SELECT * FROM food WHERE id=?";
+        return (Food) jdbcTemplate.queryForObject(sql, new FoodMapper(), id);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE FROM food WHERE id=?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public void create(Food food) {
+        String sql ="INSERT INTO food VALUES (DEFAULT,?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, food.getName(), food.getDescription(), food.getPrice(),
+                food.getWeight(), food.getType(), food.getImage());
+    }
+
+    @Override
+    public void update(Food food) {
+        String sql = "UPDATE food SET name=?, description=?, price=?, weight=?, type=? WHERE id = ?";
+        jdbcTemplate.update(sql,food.getName(), food.getDescription(), food.getPrice(), food.getWeight(),
+                food.getType(), food.getId());
     }
 }

@@ -4,6 +4,10 @@ import jdk.nashorn.internal.runtime.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.content.commons.repository.Store;
+import org.springframework.content.fs.config.EnableFilesystemStores;
+import org.springframework.content.fs.io.FileSystemResourceLoader;
+import org.springframework.content.rest.StoreRestResource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,9 +29,11 @@ import ru.tim.pizzApp.service.UserService;
 import ru.tim.pizzApp.service.UserServiceImp;
 
 import javax.sql.DataSource;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 
 @Configuration
 @EntityScan("ru.tim.pizzApp.entity")
@@ -42,6 +48,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
+
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
@@ -95,5 +102,9 @@ public class SpringConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
+        System.out.println(System.getProperty("user.dir"));
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:///" + System.getProperty("user.dir") + "/src/main/upload/");
     }
+
 }

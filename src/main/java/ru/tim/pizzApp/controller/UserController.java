@@ -1,16 +1,12 @@
 package ru.tim.pizzApp.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.tim.pizzApp.additional.GetUserName;
+import ru.tim.pizzApp.additional.UserMethods;
 import ru.tim.pizzApp.additional.OrderMethods;
 import ru.tim.pizzApp.entity.Bucket;
 import ru.tim.pizzApp.entity.Order;
@@ -62,7 +58,7 @@ public class UserController {
 
     @PostMapping("/user/addToBucket")
     public String addToBucket(@ModelAttribute Bucket bucket, Model model){
-        bucket.setUser_login(GetUserName.getCurrentUsername());
+        bucket.setUser_login(UserMethods.getCurrentUsername());
         if (bucket.getAdditives() != null) {
             String[] words = bucket.getAdditives().split(",");
             double AdditivesPrice = 0;
@@ -77,8 +73,8 @@ public class UserController {
 
     @GetMapping("/user/bucket")
     public String showBucket(Model model){
-        model.addAttribute("bucket", bucketService.findByLogin(GetUserName.getCurrentUsername()));
-        model.addAttribute("fullPrice", OrderMethods.getFullPrice(bucketService.findByLogin(GetUserName.getCurrentUsername())));
+        model.addAttribute("bucket", bucketService.findByLogin(UserMethods.getCurrentUsername()));
+        model.addAttribute("fullPrice", OrderMethods.getFullPrice(bucketService.findByLogin(UserMethods.getCurrentUsername())));
         return "user/bucket";
     }
 
@@ -90,36 +86,36 @@ public class UserController {
 
     @GetMapping("/user/orderReg")
     public String orderRegistration(Model model){
-        model.addAttribute("user", userService.getByLogin(GetUserName.getCurrentUsername()));
-        model.addAttribute("finalOrder", OrderMethods.getOrderString(bucketService.findByLogin(GetUserName.getCurrentUsername())));
-        model.addAttribute("fullPrice", OrderMethods.getFullPrice(bucketService.findByLogin(GetUserName.getCurrentUsername())));
+        model.addAttribute("user", userService.getByLogin(UserMethods.getCurrentUsername()));
+        model.addAttribute("finalOrder", OrderMethods.getOrderString(bucketService.findByLogin(UserMethods.getCurrentUsername())));
+        model.addAttribute("fullPrice", OrderMethods.getFullPrice(bucketService.findByLogin(UserMethods.getCurrentUsername())));
         return "user/orderReg";
     }
     @PostMapping("/user/regOrder")
     public String registerOrder(@ModelAttribute Order order){
-        order.setUserLogin(GetUserName.getCurrentUsername());
+        order.setUserLogin(UserMethods.getCurrentUsername());
         order.setStatus("Готовится");
         orderService.save(order);
-        bucketService.deleteByLogin(GetUserName.getCurrentUsername());
+        bucketService.deleteByLogin(UserMethods.getCurrentUsername());
         return "redirect:/" ;
     }
 
     @GetMapping("/user/personPage")
     public String personPage(Model model){
-        model.addAttribute("user", userService.getByLogin(GetUserName.getCurrentUsername()));
-        model.addAttribute("order", orderService.getAllUserOrder(GetUserName.getCurrentUsername()));
+        model.addAttribute("user", userService.getByLogin(UserMethods.getCurrentUsername()));
+        model.addAttribute("order", orderService.getAllUserOrder(UserMethods.getCurrentUsername()));
         return "user/personPage";
     }
     @PostMapping("/user/editUser")
     public String editUser(@ModelAttribute("user") User user){
-        user.setLogin(GetUserName.getCurrentUsername());
+        user.setLogin(UserMethods.getCurrentUsername());
         userService.update(user);
         return "redirect:/user/personPage";
     }
 
     @PostMapping("/user/editPassword")
     public String editPassword(@ModelAttribute("user") User user){
-        user.setLogin(GetUserName.getCurrentUsername());
+        user.setLogin(UserMethods.getCurrentUsername());
         userService.updatePassword(user);
         return "redirect:/user/personPage";
     }

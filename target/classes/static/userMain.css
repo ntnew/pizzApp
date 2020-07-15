@@ -221,4 +221,6 @@ width: 200px;
 color: red;
 text-align:center;
 }
-
+.fullString{
+white-space: pre-wrap;
+}

@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="header">
-    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+    <a id="logo" href="/user/"><img  th:src="@{../../../upload/images/logo.jpg}" alt="Пример"></a>
 
     <h2>Доставка ПиццАпп</h2>
     <h3>Заказы по телефону ...</h3>
@@ -62,7 +62,7 @@
         <tr>
             <td>Заказ № <span th:text="${order.id}"></span></td>
             <td>К оплате <span th:text="${order.price}"></span></td>
-            <td>Заказано: <span th:text="${order.order}"></span></td>
+            <td class="fullString">Заказано: <span th:text="${order.order}"></span></td>
             <td>Статус: <span th:text="${order.status}"></span></td>
         </tr>
         </tbody>

@@ -30,6 +30,16 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.github.paulcwarren</groupId>
+      <artifactId>spring-content-fs</artifactId>
+      <version>0.0.11</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.paulcwarren</groupId>
+      <artifactId>spring-content-rest</artifactId>
+      <version>0.0.11</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>

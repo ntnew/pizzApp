@@ -29,4 +29,19 @@ public class FoodServiceImp implements FoodService{
     public List<Food> findSnacks() {
         return foodDao.findSnacks();
     }
+
+    @Override
+    public void deleteById(int id) {
+        foodDao.deleteById(id);
+    }
+
+    @Override
+    public void create(Food food) {
+        foodDao.create(food);
+    }
+
+    @Override
+    public void update(Food food) {
+        foodDao.update(food);
+    }
 }

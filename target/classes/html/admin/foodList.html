@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="../../static/adminMain.css"  th:href="@{../static/adminMain.css}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/editFood.js}" src="../../static/js/editFood.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" th:src="@{../../static/js/Search.js}" src="../../static/js/Search.js"></script>
     <meta charset="UTF-8">
     <title>Меню</title>
 </head>
 <body>
-Меню
+<div class="foot">
+    <input type="text" id="search" onkeyup="javascript:tableSearch()" placeholder="Поиск">
+
+    <a class="customRef" href="/admin/newFood" >
+        <div class="mainButton">
+            Добавить новую позицию
+        </div>
+    </a>
+    <a class="customRef" href="/admin/" >
+        <div class="mainButton">
+            Главная
+        </div>
+    </a>
+
+    <a class="customRef" href="/logout">
+        <div class="mainButton">
+            Выйти
+        </div>
+    </a>
+</div>
+
+<div class="content">
+    <h1>Список товаров</h1>
+    <table id="tbl" class="mainTable">
+        <thead>
+        <tr>
+            <td style="width: 4%">№</td>
+            <td style="width: 12%">Наименование</td>
+            <td style="width: 25%">Описание</td>
+            <td>Цена</td>
+            <td>Вес</td>
+            <td>Тип</td>
+            <td style="width: 12%">Изображение</td>
+            <td style="width: 12%"></td>
+        </tr>
+        </thead>
+        <tbody th:each ="food : ${food}">
+        <tr>
+            <td th:text="${food.id}"></td>
+            <td th:text="${food.name}"></td>
+            <td th:text="${food.description}" width="500"></td>
+            <td th:text="${food.price}"></td>
+            <td th:text="${food.weight}"></td>
+            <td th:text="${food.type}"></td>
+            <td>
+                <a class="none"  target="_blank" th:href="'../../../upload/images/' + ${food.image}"
+                   th:text="${food.image}"></a>
+            </td>
+            <td>
+                <form  th:action="@{/admin/deleteFood}" th:object="${food}" method="post">
+                    <input type="hidden"  th:value="${food.id}" name="food_id">
+                    <button class="commands" type="submit">Удалить</button>
+                </form>
+                <button class="commands" type="button" th:attr="onClick='javascript:PopUpShow(&quot' + ${food.name} +
+                '&quot ,&#96' + ${food.description} + '&#96, &quot' + ${food.price} + '&quot, &quot' +
+                ${food.weight} + '&quot, &quot' + ${food.type} + '&quot, &quot' + ${food.id} + '&quot)'">Редактировать</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <p class="closePopup"><a  href="javascript:PopUpHide()">Закрыть</a></p>
+        <form id="editFoodForm" th:action="@{/admin/editFood}" method="post" th:object="${food}">
+            <table class="editFoodTable">
+                <tr>
+                    <td width="100">Наименование:</td>
+                    <td><input class="FoodInp" id="FoodName" type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>Описание:</td>
+                    <td><textarea class="FoodInp" id="FoodDescription" type="text" name="description" required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Цена:</td>
+                    <td><input class="FoodInp" id="FoodPrice" name="price" type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Вес:</td>
+                    <td><input class="FoodInp" id="FoodWeight" name="weight" type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Тип:</td>
+                    <td>
+                        <select class="FoodInp" id="FoodType" name="type">
+                            <option value="pizza">Пицца</option>
+                            <option value="drink">Напиток</option>
+                            <option value="snack">Закуска</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input class="FoodInp" id="FoodId" name="id" type="hidden">
+            <button class="orderButton" type="submit">Сохранить</button>
+        </form>
+
+    </div>
+</div>
 </body>
 </html>

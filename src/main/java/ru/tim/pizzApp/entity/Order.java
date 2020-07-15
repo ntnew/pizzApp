@@ -1,5 +1,8 @@
 package ru.tim.pizzApp.entity;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Order {
     private int id;
     private String userLogin;
@@ -10,6 +13,24 @@ public class Order {
     private String notice;
     private String status;
     private double price;
+    private Date date;
+    private Time time;
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public double getPrice() {
         return price;
@@ -22,16 +43,17 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, String userLogin, String userName, String delivaryAddress, String phone, String order, String notice, String status, double price) {
+    public Order(int id, String userLogin, String userName, String deliveryAddress, String phone, String order, String notice, String status, double price, Date date) {
         this.id = id;
         this.userLogin = userLogin;
         this.userName = userName;
-        this.deliveryAddress = delivaryAddress;
+        this.deliveryAddress = deliveryAddress;
         this.phone = phone;
         this.order = order;
         this.notice = notice;
         this.status = status;
         this.price = price;
+        this.date = date;
     }
 
     public int getId() {

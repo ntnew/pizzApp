@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../static/adminMain.css"  th:href="@{../static/adminMain.css}" rel="stylesheet" type="text/css">
+    <title>Создать позицию меню</title>
+</head>
+<body>
+<div class="foot">
+    <a class="customRef" href="/admin/" >
+        <div class="mainButton">
+            Главная
+        </div>
+    </a>
+
+    <a class="customRef" href="/logout">
+        <div class="mainButton">
+            Выйти
+        </div>
+    </a>
+</div>
+
+<div class="content">
+    <h1>Новая позиция</h1>
+    <form enctype="multipart/form-data" th:object="${food}" th:action="@{/admin/createNewFood}" method="post">
+        <table class="mainTable" >
+            <tr>
+                <td id="firstTD">Наименование:</td>
+                <td  id="secondTD"><input class="nFoodInp" name="name" type="text" required></td>
+            </tr>
+            <tr>
+                <td>Описание:</td>
+                <td><textarea class="nFoodInp" name="description" type="text" required></textArea></td>
+            </tr>
+            <tr>
+                <td>Цена:</td>
+                <td><input class="nFoodInp" name="price" type="text" required></td>
+            </tr>
+            <tr>
+                <td>Вес:</td>
+                <td><input class="nFoodInp" name="weight" type="text" required></td>
+            </tr>
+            <tr>
+                <td>Тип:</td>
+                <td>
+                    <select name="type" required>
+                        <option value="pizza">Пицца</option>
+                        <option value="drink">Напиток</option>
+                        <option value="snack">Закуска</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Загрузить картинку</td>
+                <td><input type="file" name="file"></td>
+            </tr>
+        </table>
+        <button type="submit">Создать</button>
+    </form>
+</div>
+</body>
+</html>

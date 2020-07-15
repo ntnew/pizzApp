@@ -10,5 +10,10 @@ public interface OrderDao {
     void save(Order order);
 
     List<Order> getAllUserOrder(String userLogin);
+
     List<Order> findAll ();
+
+    void deleteById(int id);
+
+    void updateStatus(Order order);
 }

@@ -1,7 +1,7 @@
 package ru.tim.pizzApp.entity;
 
 public class Food {
-    private int food_id;
+    private int id;
     private String name;
     private String description;
     private double price;
@@ -28,8 +28,8 @@ public class Food {
         this.type = type;
     }
 
-    public Food(int food_id, String name, String description, double price, int weight, String type, String image) {
-        this.food_id = food_id;
+    public Food(int id, String name, String description, double price, int weight, String type, String image) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -38,12 +38,12 @@ public class Food {
         this.image = image;
     }
 
-    public int getFood_id() {
-        return food_id;
+    public int getId() {
+        return id;
     }
 
-    public void setFood_id(int food_id) {
-        this.food_id = food_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

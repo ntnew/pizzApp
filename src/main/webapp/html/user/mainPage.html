@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="header">
-    <a id="logo" href="/user/"><img  th:src="@{../../static/images/logo.jpg}" alt="Пример"></a>
+    <a id="logo" href="/user/"><img  th:src="@{../../../upload/images/logo.jpg}" alt="Пример"></a>
     <h2>Доставка ПиццАпп</h2>
 
     <h3>Заказы по телефону ...</h3>
@@ -30,7 +30,7 @@
         <li class="foodTable" th:each ="food : ${food}">
             <table>
                 <tr>
-                    <td><img th:src="'../../static/images/' + ${food.image}"  height="300" width="300"></td>
+                    <td><img th:src="'../../../upload/images/' + ${food.image}"  height="300" width="300"></td>
                 </tr>
                 <tr>
                     <td id="name" th:utext="${food.name}">...</td>

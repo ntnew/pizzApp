@@ -12,4 +12,10 @@ public interface FoodService {
     List<Food> findDrinks();
 
     List<Food> findSnacks();
+
+    void deleteById(int id);
+
+    void create(Food food);
+
+    void update(Food food);
 }

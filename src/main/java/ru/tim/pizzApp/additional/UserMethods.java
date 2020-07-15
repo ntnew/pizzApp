@@ -9,7 +9,7 @@ import ru.tim.pizzApp.service.AdditiveService;
 
 import java.util.List;
 
-public class GetUserName {
+public class UserMethods {
 
 
     public static String getCurrentUsername() {

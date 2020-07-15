@@ -5,21 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript" th:src="@{../../static/js/userSearch.js}" src="../../static/js/userSearch.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/Search.js}" src="../../static/js/Search.js"></script>
     <link href="../../static/adminMain.css"  th:href="@{../static/adminMain.css}" rel="stylesheet" type="text/css">
     <title>Список пользователей</title>
 </head>
 <body>
 <div class="foot">
-    <input type="text" id="search" onkeyup="javascript:tableSearch()">
+    <input type="text" id="search" onkeyup="javascript:tableSearch()" placeholder="Поиск">
 
-    <a href="/admin/" >
+    <a class="customRef" href="/admin/" >
         <div class="mainButton">
             Главная
         </div>
     </a>
 
-    <a href="/logout">
+    <a class="customRef" href="/logout">
         <div class="mainButton">
             Выйти
         </div>
@@ -67,12 +67,7 @@
         </tbody>
 
     </table>
-
-
-
 </div>
-
-
 
 </body>
 </html>

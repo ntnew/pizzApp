@@ -11,7 +11,7 @@ public class FoodMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
         Food food  = new Food();
-        food.setFood_id(resultSet.getInt("id"));
+        food.setId(resultSet.getInt("id"));
         food.setName(resultSet.getString("name"));
         food.setDescription(resultSet.getString("description"));
         food.setPrice(resultSet.getDouble("price"));

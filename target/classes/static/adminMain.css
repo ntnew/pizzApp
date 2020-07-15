@@ -4,10 +4,7 @@ body {
 
 }
 
-a{
-    text-decoration: none;
-    color:black;
-}
+
 .commands{
 width: 150px;
 margin: 3px 5px;
@@ -47,7 +44,7 @@ margin: 3px 5px;
 
 .content{
     margin: 50px auto;
-    width: 1200px;
+    width: 1300px;
 }
 .mainTable{
     width:100%;
@@ -56,7 +53,6 @@ margin: 3px 5px;
     border-collapse: collapse;
 }
 .mainTable thead tr {
-
     padding:5px 10px;
     color: #ffffff;
     font-weight: bold;
@@ -77,4 +73,77 @@ margin: 3px 5px;
 .mainTable tbody tr:hover {
     background: #ebffe8;
     padding:10px 10px;
+}
+
+#orderText{
+    padding:5px 10px;
+    height: 300px;
+    width:400px;
+    border-radius:5px;
+    float: left;
+
+}
+#popupRight{
+padding: 0 0 0 450px;
+}
+#selector{
+font-size: 120%;
+margin: 0 0 40px 0;
+}
+.customRef{
+    text-decoration: none;
+    color:black;
+}
+
+#firstTD{
+width: 300px;
+}
+.nFoodInp{
+font-size:110%;
+width: 450px;
+}
+textarea{
+height:180px;
+}
+
+.FoodInp{
+font-size:110%;
+width: 350px;
+margin: 7px 0;
+}
+.editFoodTable tr{
+padding: 10px
+
+}
+
+#jsOrder{
+white-space: pre-wrap;
+width:200px;
+}
+
+#notice{
+width:290px;
+height:190px;
+font-size:120%;
+}
+#noticeDiv{
+float:left;
+}
+
+#deliveryAddress{
+width:210px;
+height:120px;
+}
+
+#OrderPrice{
+width:210px;
+margin:5px 0;
+}
+
+#buttonsTD{
+width: 155px;
+}
+
+#numberTD{
+width: 70px;
 }

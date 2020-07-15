@@ -2,6 +2,7 @@ package ru.tim.pizzApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.tim.pizzApp.additional.OrderMethods;
 import ru.tim.pizzApp.dao.OrderDao;
 import ru.tim.pizzApp.entity.Order;
 
@@ -19,11 +20,21 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public List<Order> getAllUserOrder(String userLogin) {
-        return orderDao.getAllUserOrder(userLogin);
+        return OrderMethods.parseOrderLine(orderDao.getAllUserOrder(userLogin));
     }
 
     @Override
     public List<Order> findAll() {
-        return orderDao.findAll();
+        return OrderMethods.parseOrderLine(orderDao.findAll());
+    }
+
+    @Override
+    public void deleteById(int id) {
+        orderDao.deleteById(id);
+    }
+
+    @Override
+    public void updateStatus(Order order) {
+        orderDao.updateStatus(order);
     }
 }

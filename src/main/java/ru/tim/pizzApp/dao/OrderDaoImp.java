@@ -32,4 +32,17 @@ public class OrderDaoImp implements OrderDao {
         String sql = "SELECT * FROM orders";
         return jdbcTemplate.query(sql, new OrderMapper());
     }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE FROM orders WHERE id=?";
+        jdbcTemplate.update(sql,id);
+    }
+
+    @Override
+    public void updateStatus(Order order) {
+        String sql = "UPDATE orders SET status=?, notice=? WHERE id=?";
+        jdbcTemplate.update(sql, order.getStatus(), order.getNotice(), order.getId());
+
+    }
 }

@@ -10,4 +10,8 @@ public interface OrderService {
     List<Order> getAllUserOrder(String userLogin);
 
     List<Order> findAll ();
+
+    void deleteById(int id);
+
+    void updateStatus(Order order);
 }

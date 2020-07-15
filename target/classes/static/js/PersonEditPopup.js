@@ -1,8 +1,8 @@
     $(document).ready(function(){
-        //Скрыть PopUp при загрузке страницы
+
         PopUpHide();
     });
-    //Функция отображения PopUp
+
     function PopUpShow(){
         $("#popup1").show();
     }
@@ -16,7 +16,7 @@
         form.method = 'POST';
         let valid = true;
 
-        // перед отправкой формы, её нужно вставить в документ
+
 
         if(document.getElementById("oldPassword").value !=document.getElementById("oldPassword1").value ){
             $("#wrongOldPassword").show();
@@ -39,7 +39,7 @@
     function successEdit(){
     alert('Данные изменены');
     }
-    //Функция скрытия PopUp
+
     function PopUpHide(){
         $("#popup1").hide();
         $("#popup2").hide();

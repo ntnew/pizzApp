@@ -14,7 +14,12 @@ public interface FoodDao {
 
     List<Food> findSnacks();
 
-    Food findById(int food_id);
+    Food findById(int id);
 
+    void deleteById(int id);
+
+    void create(Food food);
+
+    void update(Food food);
 
 }

@@ -20,6 +20,9 @@ public class OrderMapper implements RowMapper {
         order.setNotice(resultSet.getString("notice"));
         order.setStatus(resultSet.getString("status"));
         order.setPrice(resultSet.getDouble("price"));
+        order.setDate(resultSet.getDate("dateTime"));
+        order.setTime(resultSet.getTime("dateTime"));
+
         return order;
     }
 }

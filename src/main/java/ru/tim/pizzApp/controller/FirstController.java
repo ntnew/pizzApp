@@ -1,28 +1,14 @@
 package ru.tim.pizzApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.DataBinder;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import ru.tim.pizzApp.additional.GetUserName;
+import ru.tim.pizzApp.additional.UserMethods;
 import ru.tim.pizzApp.entity.User;
 import ru.tim.pizzApp.service.UserService;
 import ru.tim.pizzApp.validator.UserValidator;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -38,7 +24,7 @@ public class FirstController  {
 
     @GetMapping("/")
     public String mainPage() {
-        User user = userService.getByLogin(GetUserName.getCurrentUsername());
+        User user = userService.getByLogin(UserMethods.getCurrentUsername());
         if(user.getRole().equals("ROLE_USER")){
             return "redirect:user/";
         }
