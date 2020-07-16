@@ -49,7 +49,6 @@ public class FirstController  {
     public String addUser( @ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
-            System.out.println("говна наверни");
             return "regPage";
         }
         userService.save(user);

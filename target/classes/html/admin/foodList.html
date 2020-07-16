@@ -4,7 +4,9 @@
     <link href="../../static/adminMain.css"  th:href="@{../static/adminMain.css}" rel="stylesheet" type="text/css">
     <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script type="text/javascript" th:src="@{../../static/js/editFood.js}" src="../../static/js/editFood.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/editImage.js}" src="../../static/js/editImage.js"></script>
     <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script type="text/javascript" th:src="@{../../static/js/Search.js}" src="../../static/js/Search.js"></script>
     <meta charset="UTF-8">
     <title>Меню</title>
@@ -66,6 +68,8 @@
                 <button class="commands" type="button" th:attr="onClick='javascript:PopUpShow(&quot' + ${food.name} +
                 '&quot ,&#96' + ${food.description} + '&#96, &quot' + ${food.price} + '&quot, &quot' +
                 ${food.weight} + '&quot, &quot' + ${food.type} + '&quot, &quot' + ${food.id} + '&quot)'">Редактировать</button>
+                <button class="commands" type="button" th:attr="onClick='javascript:editImage(&quot'
+                + ${food.id} + '&quot, &quot' + ${food.image} + '&quot)'" >Загрузить другое изображение</button>
             </td>
         </tr>
         </tbody>
@@ -107,6 +111,26 @@
             <input class="FoodInp" id="FoodId" name="id" type="hidden">
             <button class="orderButton" type="submit">Сохранить</button>
         </form>
+    </div>
+</div>
+<div class="b-popup" id="popup2">
+    <div class="Image-content" >
+        <p class="closePopup2"><a  href="javascript:HideEditImage()">Закрыть</a></p>
+        <form enctype="multipart/form-data"  th:action="@{/admin/editImage}" method="post" th:object="${food}">
+            <input type="hidden" id="IdForImage" name="id">
+            <input type="hidden" id="oldFile" name="oldFile">
+            <div class="example-2">
+                <div class="form-group">
+                    <input type="file" name="file" id="file" class="input-file">
+                    <label for="file" class="btn btn-tertiary js-labelFile">
+                        <i class="icon fa fa-check"></i>
+                        <span class="js-fileName">Загрузить файл</span>
+                    </label>
+                </div>
+            </div><br><br>
+            <button class="orderButton3" type="submit">Сохранить</button>
+        </form>
+
 
     </div>
 </div>

@@ -63,4 +63,10 @@ public class FoodDaoImp implements FoodDao {
         jdbcTemplate.update(sql,food.getName(), food.getDescription(), food.getPrice(), food.getWeight(),
                 food.getType(), food.getId());
     }
+
+    @Override
+    public void insertNewImage(Food food) {
+        String sql = "UPDATE food SET image=? WHERE id = ?";
+        jdbcTemplate.update(sql, food.getImage(), food.getId());
+    }
 }

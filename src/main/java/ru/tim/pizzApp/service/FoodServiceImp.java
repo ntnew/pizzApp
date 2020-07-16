@@ -44,4 +44,9 @@ public class FoodServiceImp implements FoodService{
     public void update(Food food) {
         foodDao.update(food);
     }
+
+    @Override
+    public void insertNewImage(Food food) {
+        foodDao.insertNewImage(food);
+    }
 }

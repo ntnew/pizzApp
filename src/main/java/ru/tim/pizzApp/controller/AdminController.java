@@ -108,7 +108,7 @@ public class AdminController {
         }
         foodService.create(food);
         redirectAttributes.addFlashAttribute("message",
-                "Успешно создано, будет добавлено после перезагрузки сервера");
+                "Успешно создано");
         return "redirect:/admin/foodList";
     }
 
@@ -125,6 +125,30 @@ public class AdminController {
         }
         orderService.updateStatus(order);
         return "redirect:/admin/ordersList";
+    }
+
+    @PostMapping("/admin/editImage")
+    public String editImage(@ModelAttribute("food") Food food,
+                            @RequestParam("file") MultipartFile file,
+                            @RequestParam("oldFile") String oldFile)  throws IOException {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+            File delete = new File(uploadPath + "/" + oldFile);
+            if(delete.delete()){
+                System.out.println("файл удален");
+            }else System.out.println("Файла не обнаружено");
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + ".jpg";
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            food.setImage(resultFilename);
+        }
+        foodService.insertNewImage(food);
+
+        return "redirect:/admin/foodList";
     }
 
 }

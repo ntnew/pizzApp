@@ -18,4 +18,6 @@ public interface FoodService {
     void create(Food food);
 
     void update(Food food);
+
+    void insertNewImage(Food food);
 }

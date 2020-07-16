@@ -22,4 +22,6 @@ public interface FoodDao {
 
     void update(Food food);
 
+    void insertNewImage(Food food);
+
 }
