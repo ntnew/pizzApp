@@ -1,36 +1,67 @@
 package ru.tim.pizzApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import ru.tim.pizzApp.additional.UserMethods;
+import ru.tim.pizzApp.entity.User;
 import ru.tim.pizzApp.service.UserService;
+import ru.tim.pizzApp.validator.UserValidator;
+
+import javax.validation.Valid;
 
 @Controller
-public class FirstController {
+public class FirstController  {
+
 
     @Autowired
     public UserService userService;
+    @Autowired
+    private UserValidator userValidator;
 
-    @GetMapping("/hello-world")
-    public String sayHello() {
-        return "hello_world";
+
+
+    @GetMapping("/")
+    public String mainPage() {
+        User user = userService.getByLogin(UserMethods.getCurrentUsername());
+        if(user.getRole().equals("ROLE_USER")){
+            return "redirect:user/";
+        }
+        else if(user.getRole().equals("ROLE_ADMIN")){
+            return  "redirect:admin/";
+        }
+        return null;
     }
 
-    @GetMapping("/main")
-    public String mainPage() {
-        return "mainPage";
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403";
     }
 
     @GetMapping("/reg")
-    public String regPage() {
+    public String regPage(User user) {
         return "regPage";
     }
 
-    @GetMapping("/users")
-    public String getAllUsers(Model model){
-        model.addAttribute("users", userService.findAll());
-        return "usersList";
+
+    @PostMapping("/reg")
+    public String addUser( @ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
+        userValidator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "regPage";
+        }
+        userService.save(user);
+        return "login";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+
+
+
 }
+

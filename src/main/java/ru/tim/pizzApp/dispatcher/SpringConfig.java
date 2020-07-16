@@ -1,14 +1,23 @@
 package ru.tim.pizzApp.dispatcher;
 
+import jdk.nashorn.internal.runtime.Property;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.content.commons.repository.Store;
+import org.springframework.content.fs.config.EnableFilesystemStores;
+import org.springframework.content.fs.io.FileSystemResourceLoader;
+import org.springframework.content.rest.StoreRestResource;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -20,9 +29,16 @@ import ru.tim.pizzApp.service.UserService;
 import ru.tim.pizzApp.service.UserServiceImp;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 
 @Configuration
-@ComponentScan("ru.tim.pizzApp")
+@EntityScan("ru.tim.pizzApp.entity")
+@ComponentScan(basePackages = {"ru.tim.pizzApp.service","ru.tim.pizzApp.dao","ru.tim.pizzApp.validator"})
+@PropertySource("classpath:database.properties")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
@@ -33,13 +49,14 @@ public class SpringConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
+
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/html/");
         templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setTemplateMode("HTML");
         return templateResolver;
     }
 
@@ -63,24 +80,31 @@ public class SpringConfig implements WebMvcConfigurer {
         return new JdbcTemplate(getDataSourse());
     }
 
+    @Value("${jdbc.driverClassName}")
+    private String driverClassName;
+    @Value("${jdbc.url}")
+    private String url;
+    @Value("${jdbc.username}")
+    private String username;
+    @Value("${jdbc.password}")
+    private String password;
     @Bean
     public DataSource getDataSourse() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/internet_auction?useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("NTNew021194158");
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(url); //"jdbc:mysql://localhost:3306/pizzapp?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Moscow"
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setDriverClassName(driverClassName);
         return dataSource;
     }
 
-    @Bean
-    public UserDao getUserDao(){
-        return new UserDaoImp(getJdbcTemplate());
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+        System.out.println(System.getProperty("user.dir"));
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:///" + System.getProperty("user.dir") + "/src/main/upload/");
     }
 
-    @Bean
-    @Primary
-    public UserService getUserService(){
-        return new UserServiceImp();
-    }
 }

@@ -1,19 +1,54 @@
 package ru.tim.pizzApp.entity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User {
     private int user_id;
+    private String login;
     private String name;
     private String email;
-    private int phone;
-    private int address;
+    private String phone;
+    private String address;
+    private String password;
+    private String  role;
 
-    public User(int user_id, String name, String email, int phone, int address) {
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public User(int user_id, String login, String name, String email, String phone, String address, String password, String role) {
         this.user_id = user_id;
+        this.login = login;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.password = password;
+        this.role = role;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public User(){
 
@@ -43,19 +78,19 @@ public class User {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public int getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }

@@ -1,0 +1,165 @@
+body {
+  background-color: #fafafa;
+  font-family:Verdana;
+
+}
+
+
+.commands{
+width: 150px;
+margin: 3px 5px;
+}
+.foot{
+ float: left;
+ margin: 100px 0;
+
+}
+.mainButton{
+    ;
+    margin:30px auto;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:250px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.mainButtonLine{
+    display: inline;
+    margin:50px 50px;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:250px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.content{
+    margin: 50px auto;
+    width: 1300px;
+}
+.mainTable{
+    width:100%;
+    margin:0 auto;
+    padding:5px 10px;
+    border-collapse: collapse;
+}
+.mainTable thead tr {
+    padding:5px 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #00bf80;
+}
+.mainTable thead tr td {
+    border: 1px solid #01ab73;
+    padding:10px 10px;
+}
+.mainTable tbody tr td {
+    border-top: 1px solid #e8e9eb;
+    padding:10px 10px;
+}
+.mainTable tbody tr:nth-child(2n) {
+    background: #f4f4f4;
+    padding:10px 10px;
+}
+.mainTable tbody tr:hover {
+    background: #ebffe8;
+    padding:10px 10px;
+}
+
+#orderText{
+    padding:5px 10px;
+    height: 300px;
+    width:400px;
+    border-radius:5px;
+    float: left;
+
+}
+#popupRight{
+padding: 0 0 0 450px;
+}
+#selector{
+font-size: 120%;
+margin: 0 0 40px 0;
+}
+.customRef{
+    text-decoration: none;
+    color:black;
+}
+
+#firstTD{
+width: 300px;
+}
+.nFoodInp{
+font-size:110%;
+width: 450px;
+}
+textarea{
+height:180px;
+}
+
+.FoodInp{
+font-size:110%;
+width: 350px;
+margin: 7px 0;
+}
+.editFoodTable tr{
+padding: 10px
+
+}
+
+#jsOrder{
+white-space: pre-wrap;
+width:200px;
+}
+
+#notice{
+width:290px;
+height:190px;
+font-size:120%;
+}
+#noticeDiv{
+float:left;
+}
+
+#deliveryAddress{
+width:210px;
+height:120px;
+}
+
+#OrderPrice{
+width:210px;
+margin:5px 0;
+}
+
+#buttonsTD{
+width: 155px;
+}
+
+#numberTD{
+width: 70px;
+}
+.Image-content{
+    margin:90px auto 0px auto;
+    width:500px;
+    height: 300px;
+    padding:10px;
+    background-color: #F0F0F0;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.example-2 .btn-tertiary{color:#555;padding:0;line-height:40px;width:300px;margin:auto;display:block;border:2px solid #555}
+.example-2 .btn-tertiary:hover,.example-2 .btn-tertiary:focus{color:#888;border-color:#888}
+.example-2 .input-file{width:.1px;height:.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+.example-2 .input-file + .js-labelFile{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;cursor:pointer}
+.example-2 .input-file + .js-labelFile .icon:before{content:"\f093"}
+.example-2 .input-file + .js-labelFile.has-file .icon:before{content:"\f00c";color:#5AAC7B}

@@ -1,0 +1,241 @@
+body {
+  background-color: #fafafa;
+  font-family:Verdana;
+  font-size: 110%;
+}
+
+.header{
+    margin: 10px auto;
+    color: #FDC504;
+    background-color: #332F30;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    width:1300px
+
+}
+
+.header h2, h3{
+    padding: 10px 0px 10px 100px;
+}
+#headerRef{
+    text-align: center;
+    padding: 20px;
+}
+
+.header a{
+    color:#FDC504;
+    text-decoration: none;
+    margin:0 50px;
+    font-size: 110%;
+}
+
+.content{
+    width: 1200px;
+    margin: 0 auto;
+}
+.foodTable{
+}
+#name{
+    font-weight:bold;
+    background-color: #FDC504;
+    text-align:center;
+    font-size: 120%;
+    margin: 0;
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+
+ol li{
+    display: inline;
+    margin: 20px;
+}
+ol table{
+    display: inline;
+}
+
+#logo{
+    height: 100px;
+    width 200px;
+    float: right;
+    padding: 0 30px;
+}
+
+td{
+    width:300px;
+    margin:0;
+    padding:0;
+}
+p{
+    margin:5px;
+    padding:0;
+}
+
+#price{
+    font-weight: bold;
+    font-size: 120%;
+}
+
+#order{
+    color: #000000;
+    text-align:center;
+}
+
+.orderButton{
+    margin:0 0 30px 0;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:190px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+.orderButton2{
+    margin:0 0 30px 0;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:290px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+.orderButton3{
+    margin:0 0 0 100px;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight:bold;
+    border-radius:5px;
+    width:290px;
+    background-color: #FDC504;
+    color: #000000;
+    font-size: 130%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+#description{
+    height:110px;
+}
+
+
+
+.b-container{
+    width:200px;
+    height:150px;
+    background-color: #ccc;
+    margin:0px auto;
+    padding:10px;
+    font-size:30px;
+    color: #fff;
+}
+.b-popup{
+    width:100%;
+    height: 2000px;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.b-popup .b-popup-content{
+    margin:40px auto 0px auto;
+    width:900px;
+    height: 500px;
+    padding:10px;
+    background-color: #F0F0F0;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+#image{
+    width:400px;
+    float: left;
+
+}
+
+#preOrderName{
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 140%;
+}
+#preOrderPrice{
+    font-size: 120%;
+}
+#preOrderDescription{
+    padding:  5px 0 5px 415px ;
+}
+.closePopup{
+    padding:  5px 0 5px 800px ;
+}
+
+.closePopup2{
+    padding:  5px 0 5px 400px ;
+}
+a{
+text-decoration: none;
+
+}
+#priceP{
+    padding:  5px 0 5px 415px ;
+}
+#additiveForm{
+
+}
+label{
+    margin: 0 10px;
+    padding: 10px 0;
+}
+
+.additiveInput{
+    margin:8px 10px;
+}
+
+.bucketTable{
+    margin:0 auto;
+    padding:5px 10px;
+    border-collapse: collapse;
+}
+.bucketTable thead tr {
+    padding:5px 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #00bf80;
+}
+.bucketTable thead tr td {
+    border: 1px solid #01ab73;
+    padding:10px 10px;
+}
+.bucketTable tbody tr td {
+    border-top: 1px solid #e8e9eb;
+    padding:10px 10px;
+}
+.bucketTable tbody tr:nth-child(2n) {
+    background: #f4f4f4;
+    padding:10px 10px;
+}
+.bucketTable tbody tr:hover {
+    background: #ebffe8;
+    padding:10px 10px;
+}
+
+.orderInput{
+    margin: 10px;
+    padding:5px;
+    border: 2px solid #919191;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:3px;
+    width:330px;
+}
+.td1{
+width: 200px;
+}
+.error{
+color: red;
+text-align:center;
+}
+.fullString{
+white-space: pre-wrap;
+}

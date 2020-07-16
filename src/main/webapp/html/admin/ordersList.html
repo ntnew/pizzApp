@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-2.0.2.min.js}" src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/Search.js}" src="../../static/js/Search.js"></script>
+    <script type="text/javascript" th:src="@{../../static/js/editOrder.js}" src="../../static/js/editOrder.js"></script>
+    <link href="../../static/userMain.css"  th:href="@{../static/userMain.css}" rel="stylesheet" type="text/css">
+    <link href="../../static/adminMain.css"  th:href="@{../static/adminMain.css}" rel="stylesheet" type="text/css">
+    <title>Заказы</title>
+</head>
+<body>
+<div class="foot">
+    <input type="text" id="search" onkeyup="javascript:tableSearch()" placeholder="Поиск">
+
+    <a class="customRef" href="/admin/" >
+        <div class="mainButton">
+            Главная
+        </div>
+    </a>
+
+    <a class="customRef" href="/logout">
+        <div class="mainButton">
+            Выйти
+        </div>
+    </a>
+</div>
+<div class="content">
+    <h1>Список заказов</h1>
+    <table id="tbl" class="mainTable">
+        <thead>
+        <tr>
+            <td style="width: 5%">Заказ №</td>
+            <td>Заказчик:</td>
+            <td>Адрес доставки</td>
+            <td>К оплате:</td>
+            <td  style="width: 19%">Заказано:</td>
+            <td>Примечание</td>
+            <td>Статус:</td>
+            <td>Время заказа</td>
+            <td style="width: 12%"></td>
+        </tr>
+        </thead>
+        <tbody th:each ="order : ${order}">
+        <tr>
+            <td th:text="${order.id}" width="70px"></td>
+            <td>
+                <span th:text="${order.userLogin}"></span><br>
+                <span th:text="${order.userName}"></span>
+            </td>
+            <td th:text="${order.deliveryAddress}"></td>
+            <td th:text="${order.price}"></td>
+
+            <td id="jsOrder" th:text="${order.order}"></td>
+            <td th:text="${order.notice}"></td>
+            <td th:text="${order.status}"></td>
+            <td>
+                <span th:text="${order.date}"></span><br>
+                <span th:text="${order.time}"></span>
+            </td>
+
+            <td >
+                    <form  th:action="@{/admin/deleteOrder}" th:object="${order}" method="post">
+                        <input type="hidden" th:value="${order.id}" name="id">
+                        <button class="commands" type="submit">Удалить заказ</button>
+                    </form>
+                    <button class="commands" th:attr=
+                            "onClick='javascript:PopUpShow(&#96' + ${order.status} +
+                            '&#96, &#96' + ${order.notice} + '&#96, &#96' + ${order.id} + '&#96)'">Редактировать</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <p class="closePopup"><a class="customRef" href="javascript:PopUpHide()">Закрыть</a></p>
+        <form id="editOrder" name="editOrder" th:action="@{/admin/editOrder}" method="post" th:object="${order}">
+            <div id="noticeDiv">
+                <h4>Примечание:</h4>
+                <textarea id="notice" name="notice" ></textarea>
+            </div>
+
+            <div id="popupRight">
+                <br>
+                <h4>Статус заказа</h4>
+                <select id="selector" name="status">
+                    <option>Готовится</option>
+                    <option>Доставляется</option>
+                    <option>Завершён</option>
+                    <option>Отменён</option>
+                </select><br>
+                <input type="hidden" id="id" name="id">
+                <button class="orderButton2" type="submit">Подтвердить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
